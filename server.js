@@ -4,13 +4,16 @@ const express = require('express');
 const carRoutes = require('./routes/cars-routes')
 const authRoutes = require('./routes/auth')
 const someObject = { key: 'value' }; 
-mongoose.connect('mongodb://localhost:27017/cars')
+mongoose.connect('mongodb+srv://mohamedali76544321:0YNmnpsjTrKsuNVj@cars.7a20z.mongodb.net/?retryWrites=true&w=majority&appName=Cars')
     .then(() => console.log('Connected to Database'))
     .catch(err => console.error('Could not connect to MongoDB', err));
 
 const expressApp = express();
 expressApp.use(express.json());
 
+expressApp.get('/', (req, res) => {
+  res.send('Hello World!'); 
+});
 expressApp.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "http://localhost:4200");
     res.header(
